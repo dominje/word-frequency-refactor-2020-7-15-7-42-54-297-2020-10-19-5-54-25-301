@@ -8,6 +8,9 @@ import java.io.CharArrayWriter;
 import java.time.LocalDateTime;
 
 public class WordFrequencyGame {
+
+    public static final String WHITE_SPACES = "\\s+";
+
     public String getResult(String sentence){
 
 
@@ -18,7 +21,7 @@ public class WordFrequencyGame {
             try {
 
                 //split the input string with 1 to n pieces of spaces
-                String[] arr = sentence.split("\\s+");
+                String[] arr = sentence.split(WHITE_SPACES);
 
                 List<Input> inputList = new ArrayList<>();
                 for (String s : arr) {
