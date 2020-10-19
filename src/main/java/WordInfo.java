@@ -2,11 +2,10 @@ public class WordInfo {
     private String word;
     private int count;
 
-    public WordInfo(String w, int i){
-        this.word =w;
-        this.count =i;
+    public WordInfo(String word, int count) {
+        this.word = word;
+        this.count = count;
     }
-
 
     public String getWord() {
         return this.word;
