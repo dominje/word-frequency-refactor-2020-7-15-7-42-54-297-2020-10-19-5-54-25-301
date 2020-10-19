@@ -9,7 +9,7 @@ public class WordFrequencyGame {
             return sentence + " 1";
         } else {
                 try {
-                    List<WordInfo> wordInfoList = calculateWordInfo(sentence);
+                    List<WordInfo> wordInfoList = calculateWordFrequency(sentence);
 
                     wordInfoList.sort((firstWord, secondWord) -> secondWord.getWordCount() - firstWord.getWordCount());
 
@@ -29,7 +29,7 @@ public class WordFrequencyGame {
         return sentence.split(WHITE_SPACES).length == 1;
     }
 
-    private List<WordInfo> calculateWordInfo(String sentence) {
+    private List<WordInfo> calculateWordFrequency(String sentence) {
         List<String> words = Arrays.asList(sentence.split(WHITE_SPACES));
         List<WordInfo> wordInfoList = new ArrayList<>();
         for (String word : new HashSet<>(words)) {
