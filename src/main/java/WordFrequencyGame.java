@@ -11,7 +11,7 @@ public class WordFrequencyGame {
         } else {
                 try {
                     List<WordInfo> wordInfoList = calculateWordFrequency(sentence);
-                    wordInfoList.sort((firstWord, secondWord) -> secondWord.getWordCount() - firstWord.getWordCount());
+                    sortWordInfoList(wordInfoList);
                     StringJoiner wordCountOutput = new StringJoiner(NEW_LINE);
                     for (WordInfo word : wordInfoList) {
                         String wordInfoLine = String.format("%s %d", word.getWord(), word.getWordCount());
@@ -22,6 +22,10 @@ public class WordFrequencyGame {
                     return "Calculate Error";
                 }
         }
+    }
+
+    private void sortWordInfoList(List<WordInfo> wordInfoList) {
+        wordInfoList.sort((firstWord, secondWord) -> secondWord.getWordCount() - firstWord.getWordCount());
     }
 
     private boolean isSentenceOnlyOneWord(String sentence) {
