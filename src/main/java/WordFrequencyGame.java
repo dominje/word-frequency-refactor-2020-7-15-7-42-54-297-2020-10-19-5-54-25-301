@@ -3,6 +3,7 @@ import java.util.*;
 public class WordFrequencyGame {
 
     private static final String WHITE_SPACES = "\\s+";
+    public static final String NEW_LINE = "\n";
 
     public String getResult(String sentence) {
         if (isSentenceOnlyOneWord(sentence)) {
@@ -11,7 +12,7 @@ public class WordFrequencyGame {
                 try {
                     List<WordInfo> wordInfoList = calculateWordFrequency(sentence);
                     wordInfoList.sort((firstWord, secondWord) -> secondWord.getWordCount() - firstWord.getWordCount());
-                    StringJoiner wordCountOutput = new StringJoiner("\n");
+                    StringJoiner wordCountOutput = new StringJoiner(NEW_LINE);
                     for (WordInfo word : wordInfoList) {
                         String wordInfoLine = String.format("%s %d", word.getWord(), word.getWordCount());
                         wordCountOutput.add(wordInfoLine);
