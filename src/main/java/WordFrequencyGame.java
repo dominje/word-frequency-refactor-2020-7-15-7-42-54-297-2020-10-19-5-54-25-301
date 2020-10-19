@@ -5,27 +5,28 @@ public class WordFrequencyGame {
     private static final String WHITE_SPACES = "\\s+";
 
     public String getResult(String sentence) {
-        if (sentence.split(WHITE_SPACES).length == 1) {
+        if (isSentenceOnlyOneWord(sentence)) {
             return sentence + " 1";
         } else {
+                try {
+                    List<WordInfo> wordInfoList = calculateWordInfo(sentence);
 
-            try {
-                List<WordInfo> wordInfoList = calculateWordInfo(sentence);
+                    wordInfoList.sort((firstWord, secondWord) -> secondWord.getWordCount() - firstWord.getWordCount());
 
-                wordInfoList.sort((firstWord, secondWord) -> secondWord.getWordCount() - firstWord.getWordCount());
-
-                StringJoiner joiner = new StringJoiner("\n");
-                for (WordInfo word : wordInfoList) {
-                    String wordInfoLine = String.format("%s %d", word.getWord(), word.getWordCount());
-                    joiner.add(wordInfoLine);
+                    StringJoiner joiner = new StringJoiner("\n");
+                    for (WordInfo word : wordInfoList) {
+                        String wordInfoLine = String.format("%s %d", word.getWord(), word.getWordCount());
+                        joiner.add(wordInfoLine);
+                    }
+                    return joiner.toString();
+                } catch (Exception e) {
+                    return "Calculate Error";
                 }
-                return joiner.toString();
-            } catch (Exception e) {
-
-
-                return "Calculate Error";
-            }
         }
+    }
+
+    private boolean isSentenceOnlyOneWord(String sentence) {
+        return sentence.split(WHITE_SPACES).length == 1;
     }
 
     private List<WordInfo> calculateWordInfo(String sentence) {
